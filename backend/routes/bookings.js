@@ -12,7 +12,7 @@ router.post("/", async (req, res) => {
       price,
       membersExisting,
       membersNeeded,
-      email // 👈 make sure email is sent from frontend
+      email 
     } = req.body;
 
     const booking = new Booking({
@@ -23,7 +23,7 @@ router.post("/", async (req, res) => {
       price,
       membersPresent: membersExisting,
       membersNeeded,
-      email // 👈 add email to the document
+      email 
     });
 
     await booking.save();
@@ -34,7 +34,6 @@ router.post("/", async (req, res) => {
   }
 });
 
-// Get all bookings
 router.get("/", async (req, res) => {
   try {
     const allBookings = await Booking.find();
