@@ -13,6 +13,27 @@ app.use("/api/auth", require("./routes/auth"));
 app.use("/api/bookings", require("./routes/bookings"));
 app.use("/api/chat/",require("./routes/messages"));
 
+// GET bookings - optionally filtered by email
+// app.get("/", async (req, res) => {
+//   try {
+//     const { email } = req.query;
+
+//     let bookings;
+
+//     if (email) {
+//       console.log("Fetching bookings for email:", email); // 🔍 log email
+//       bookings = await Booking.find({ email });
+//     } else {
+//       bookings = await Booking.find();
+//     }
+
+//     res.json(bookings);
+//   } catch (err) {
+//     console.error("Error fetching bookings:", err);
+//     res.status(500).json({ error: err.message });
+//   }
+// });
+
 
 app.get("/api/requests", async (req, res) => {
   const { email } = req.query;

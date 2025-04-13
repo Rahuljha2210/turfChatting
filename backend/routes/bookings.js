@@ -36,11 +36,29 @@ router.post("/", async (req, res) => {
 
 router.get("/", async (req, res) => {
   try {
+    const { email } = req.query;
+
+    let bookings;
+    if (email) {
+      bookings = await Booking.find({ email });
+    } else {
+      bookings = await Booking.find(); // optional: restrict if no email provided
+    }
+
+    res.json(bookings);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+router.get("/", async (req, res) => {
+  try {
     const allBookings = await Booking.find();
     res.json(allBookings);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 });
+
 
 module.exports = router;
